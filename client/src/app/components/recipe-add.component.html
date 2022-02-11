@@ -1,1 +1,84 @@
-<p>recipe-add works!</p>
+<form class="row g-2" [formGroup]="form">
+  <div class="form-floating mb-3">
+    <figure class="text-center">
+      <blockquote class="blockquote">
+        <p>Nothing tastes better than food expired 7 years ago.</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        Famous last words <cite title="Source Title">from a hoarder.</cite>
+      </figcaption>
+    </figure>
+  </div>
+  <div class="form-floating mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      placeholder="What do we call this."
+      formControlName="title"
+    />
+    <label for="title">Title</label>
+  </div>
+  <div class="form-floating mb-3">
+    <table>
+      <tr>
+        <td>Ingredients</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="onAddIngredient()"
+          >
+            +
+          </button>
+        </td>
+      </tr>
+      <tbody formArrayName="ingredients">
+        <tr
+          *ngFor="let ingControl of controls; let i = index"
+          [formGroupName]="i"
+        >
+          <td>
+            <input type="text" class="form-control" formControlName="name" />
+          </td>
+          <td>
+            <button
+              class="btn btn-danger"
+              type="button"
+              (click)="onDeleteIngredient(i)"
+            >
+              X
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="form-floating mb-3">
+    <textarea
+      class="form-control"
+      placeholder="Instructions go here"
+      id="instructions"
+      style="height: 100px"
+      formControlName="instructions"
+    ></textarea>
+    <label for="instructions">Instructions</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    <input
+      type="text"
+      class="form-control"
+      id="image"
+      placeholder="Key in here."
+      formControlName="image"
+    />
+    <label for="image">Image URL</label>
+  </div>
+  <div class="form-floating mb-3">
+    <button type="button" class="btn btn-secondary">Back</button>
+    <button type="button" class="btn btn-success" [disabled]="!valid">
+      Add
+    </button>
+  </div>
+</form>
