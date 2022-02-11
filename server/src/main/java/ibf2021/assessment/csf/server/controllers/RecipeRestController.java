@@ -70,20 +70,6 @@ public class RecipeRestController {
         }
     }
 
-    public ResponseEntity<String> saveRecipe(@RequestBody Recipe recipe) {
-
-        String id = recipe.getId();
-        logger.info("ID from POST(JSON) >>>>> %s".formatted(id));
-
-        recipeSvc.addRecipe(recipe);
-        logger.info(recipe.toString());
-
-        final JsonObject resp = Json.createObjectBuilder()
-                .add("message", "inserted to Java Map")
-                .build();
-        return ResponseEntity.status(HttpStatus.CREATED).body(resp.toString());
-    }
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> addRecipe(@RequestBody String newRecipe) {
         logger.info("New Recipe received, commencing ingest");

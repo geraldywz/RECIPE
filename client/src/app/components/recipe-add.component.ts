@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Recipe } from '../models';
 
@@ -20,7 +21,7 @@ export class RecipeAddComponent implements OnInit, OnDestroy {
   sub$!: Subscription;
   valid = new BehaviorSubject<boolean>(false);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.resetForm(this.recipe);
@@ -79,5 +80,14 @@ export class RecipeAddComponent implements OnInit, OnDestroy {
 
   onDeleteIngredient(index: number) {
     (<FormArray>this.form.get('ingredients')).removeAt(index);
+  }
+
+  clearAndGoBack() {
+    this.resetForm();
+    this.back();
+  }
+
+  back() {
+    this.router.navigate(['/']);
   }
 }
