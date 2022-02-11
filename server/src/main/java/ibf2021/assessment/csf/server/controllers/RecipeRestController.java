@@ -78,11 +78,7 @@ public class RecipeRestController {
             JsonObject data = Json.createReader(is).readObject();
             Recipe recipe = new Recipe();
 
-            JsonArray ingredients = Json.createReader(
-                    new ByteArrayInputStream(
-                            data.getString("ingredients")
-                                    .getBytes()))
-                    .readArray();
+            JsonArray ingredients = data.getJsonArray("ingredients");
 
             for (JsonValue ingredient : ingredients) {
                 recipe.addIngredient(
@@ -102,7 +98,7 @@ public class RecipeRestController {
                             .build()
                             .toString());
         } catch (Exception e) {
-            logger.info("Adding new recipe unsuccessful.");
+            logger.info("Unable to add new recipe.");
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(Json.createObjectBuilder()
                     .add("error", e.toString())

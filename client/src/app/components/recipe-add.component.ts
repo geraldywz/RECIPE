@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Recipe } from '../models';
+import { RecipeService } from '../service/recipe.service';
 
 @Component({
   selector: 'app-recipe-add',
@@ -21,7 +22,11 @@ export class RecipeAddComponent implements OnInit, OnDestroy {
   sub$!: Subscription;
   valid = new BehaviorSubject<boolean>(false);
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private recipeSvc: RecipeService
+  ) {}
 
   ngOnInit(): void {
     this.resetForm(this.recipe);
@@ -80,6 +85,17 @@ export class RecipeAddComponent implements OnInit, OnDestroy {
 
   onDeleteIngredient(index: number) {
     (<FormArray>this.form.get('ingredients')).removeAt(index);
+  }
+
+  addRecipe() {
+    const r = this.getValue();
+    this.recipeSvc.addRecipe(r);
+    this.resetForm();
+    this.back();
+  }
+
+  getValue(): Recipe {
+    return this.form.value as Recipe;
   }
 
   clearAndGoBack() {

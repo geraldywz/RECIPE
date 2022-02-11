@@ -76,8 +76,15 @@
     <label for="image">Image URL</label>
   </div>
   <div class="form-floating mb-3">
-    <button type="button" class="btn btn-secondary">Back</button>
-    <button type="button" class="btn btn-success" [disabled]="!valid">
+    <button type="button" class="btn btn-secondary" (click)="clearAndGoBack()">
+      Back
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      [disabled]="!valid"
+      (click)="addRecipe()"
+    >
       Add
     </button>
   </div>
