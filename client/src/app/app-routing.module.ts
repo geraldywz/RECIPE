@@ -5,14 +5,14 @@ import { RecipeDetailComponent } from './components/recipe-detail.component';
 import { RecipeListComponent } from './components/recipe-list.component';
 
 const routes: Routes = [
-  { path: '', component: RecipeDetailComponent },
+  { path: '', component: RecipeListComponent },
   {
     path: 'add',
     component: RecipeAddComponent,
   },
   {
     path: 'recipe/:recipeId',
-    component: RecipeListComponent,
+    component: RecipeDetailComponent,
   },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

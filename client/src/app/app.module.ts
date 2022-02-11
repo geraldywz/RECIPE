@@ -7,6 +7,7 @@ import { RecipeAddComponent } from './components/recipe-add.component';
 import { RecipeDetailComponent } from './components/recipe-detail.component';
 import { RecipeListComponent } from './components/recipe-list.component';
 import { RecipeService } from './service/recipe.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { RecipeService } from './service/recipe.service';
     RecipeDetailComponent,
     RecipeListComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [RecipeService],
   bootstrap: [AppComponent],
 })
