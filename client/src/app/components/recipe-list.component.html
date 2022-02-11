@@ -1,8 +1,6 @@
 <div class="list-group" *ngIf="summary.length > 0">
   <div *ngFor="let recipe of summary" class="item">
-    <a [routerLink]="['/recipe', recipe.id]" target="_top" (click)="reload()">
-      {{ recipe.title }}</a
-    >
+    <a [routerLink]="['/recipe', recipe.id]"> {{ recipe.title }}</a>
   </div>
 </div>
 <button

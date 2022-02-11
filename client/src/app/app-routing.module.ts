@@ -11,7 +11,7 @@ const routes: Routes = [
     component: RecipeAddComponent,
   },
   {
-    path: 'recipe/:recipeId',
+    path: 'recipe/:id',
     component: RecipeDetailComponent,
   },
   { path: '**', redirectTo: '/', pathMatch: 'full' },

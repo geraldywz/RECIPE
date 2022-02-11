@@ -15,7 +15,6 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeSvc.getAllRecipes().then((r) => (this.summary = r));
-    console.log('NgInit');
   }
 
   reload() {
